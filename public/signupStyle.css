@@ -1,0 +1,33 @@
+.well{
+  border: 9px solid orange;
+  width: 41%;
+  height: 500px;
+  margin-bottom: none;
+}
+.headerLogo{
+  text-align: center;
+}
+.headerInstructions{
+  text-align: center;
+}
+h1{
+  font-size: 72px;
+}
+h2{
+  text-align: center
+  background: white;
+}
+
+.payingBillsPic{
+  width: 30%
+}
+body{
+  background-image: url("img/paper_texture3887.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.page-header{
+  border-bottom: none;
+  color: black
+}

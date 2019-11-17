@@ -1,0 +1,27 @@
+body{
+  padding-top:10px;
+  word-wrap:break-word;
+}
+img{
+  height: 300px;
+}
+div{
+  text-align: center;
+}
+h1{
+  font-size: 50px;
+    font-weight: normal;
+    font-style: unset;
+}
+p{
+  font-size: 21px;
+  font-weight: normal;
+  font-style: unset;
+}
+a{
+  font-size: 20px;
+    margin: 1% 1% 1% 1%;
+    padding: .25% 2% .25% 2%;
+    text-decoration: none;
+    border: 1px solid black;
+}
