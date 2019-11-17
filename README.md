@@ -3,7 +3,7 @@
 # ✅ Personal FullStack Bill Handler App
 No one like to pay bills.  Even less having to manage them all.  Therefore I built this Full Stack application in order for you to take away some of the stress that come with having to pay bills..
 
-![alt text](appScreenShot.png)
+![alt text]()
 
 
 ## Tech Used:
