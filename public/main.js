@@ -12,7 +12,7 @@ Array.from(thumbUp).forEach(function(element) {
           body: JSON.stringify({
             'name': name,
             'msg': msg,
-            'thumbUp':"PAYED!"
+            'thumbUp':"PAID!"
           })
         })
         .then(response => {
