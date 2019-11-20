@@ -1,4 +1,8 @@
-module.exports = function(app, passport, db) {
+
+const fetch = require("node-fetch");
+
+module.exports = function(app, passport, db, ObjectId) {
+  // const fetch = require("node-fetch");
 
 // normal routes ===============================================================
 
@@ -9,7 +13,9 @@ module.exports = function(app, passport, db) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+      var uId = req.user._id
+      console.log(uId)
+        db.collection('messages').find({createdBy: uId}).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
@@ -17,6 +23,7 @@ module.exports = function(app, passport, db) {
           })
         })
     });
+
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -27,16 +34,18 @@ module.exports = function(app, passport, db) {
 // message board routes ===============================================================
 
     app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: req.body.thumbUp}, (err, result) => {
+      db.collection('messages').save({name: req.body.name, price: req.body.price, thumbUp: req.body.thumbUp, createdBy: req.user._id}, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
+
         res.redirect('/profile')
       })
     })
 
     app.put('/messages', (req, res) => {
+      console.log(req)
       db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+      .findOneAndUpdate({name: req.body.name, price: req.body.price}, {
         $set: {
           thumbUp:req.body.thumbUp
         }
@@ -49,8 +58,12 @@ module.exports = function(app, passport, db) {
       })
     })
 
+    // app.put('/addTotal',(req, res)=> {
+    //   db.collection('messages').findOneAndUpdate({createdBy: req.user._id})
+    // })
+
     app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+      db.collection('messages').findOneAndDelete({name: req.body.name, price: req.body.price}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
@@ -108,6 +121,7 @@ module.exports = function(app, passport, db) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
+  // console.log(req)
     if (req.isAuthenticated())
         return next();
 
