@@ -10,7 +10,7 @@ Array.from(thumbUp).forEach(function(element) {
         // allows to reach server from main JS with this fetch
         // then a put for win to say how theny win
         // then a put for loose to sya how much they loose
-        fetch('messages', {
+        fetch('bills', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -35,7 +35,7 @@ Array.from(trash).forEach(function(element) {
         const name = this.parentNode.parentNode.childNodes[1].innerText
         const price = this.parentNode.parentNode.childNodes[3].innerText
         console.log(name)
-        fetch('messages', {
+        fetch('bills', {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json'

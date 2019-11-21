@@ -15,11 +15,11 @@ module.exports = function(app, passport, db, ObjectId) {
     app.get('/profile', isLoggedIn, function(req, res) {
       var uId = req.user._id
       console.log(uId)
-        db.collection('messages').find({createdBy: uId}).toArray((err, result) => {
+        db.collection('bills').find({createdBy: uId}).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
-            messages: result
+            bills: result
           })
         })
     });
@@ -32,9 +32,9 @@ module.exports = function(app, passport, db, ObjectId) {
     });
 
 // message board routes ===============================================================
-
-    app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, price: req.body.price, thumbUp: req.body.thumbUp, createdBy: req.user._id}, (err, result) => {
+//  new collection to keep a running total
+    app.post('/bills', (req, res) => {
+      db.collection('bills').save({name: req.body.name, price: req.body.price, thumbUp: req.body.thumbUp, createdBy: req.user._id, totalBills: req.body.totalBills}, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
 
@@ -42,9 +42,42 @@ module.exports = function(app, passport, db, ObjectId) {
       })
     })
 
-    app.put('/messages', (req, res) => {
+    // app.put('/total', (req, res) => {
+    //   console.log(req)
+    //   let listOfBills = document.getElementsByClassName('messages')
+    //   console.log(listOfBills)
+    //   let listOfAllTheBills = []
+    //   for(let i = 0; i<listOfBills[0].children.length; i++){
+    //     let valueOfBills = parseInt(listOfBills[0].children[i].childNodes[3].innerText)
+    //     listOfAllTheBills.push(valueOfBills)
+    //     console.log(listOfAllTheBills)
+    //     const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    //     // console.log(listOfAllTheBills.reduce(reducer));
+    //     let totalPricOfBills = listOfAllTheBills.reduce(reducer)
+    //   }
+    //   db.collection('bills')
+    //   .findOneAndUpdate({name: req.body.name, price: req.body.price, thumbUp:req.body.thumbUp}, {
+    //     $set: {
+    //       totalBills: totalP
+    //     }
+    //   }, {
+    //     sort: {_id: -1},
+    //     upsert: true
+    //   }, (err, result) => {
+    //     if (err) return res.send(err)
+    //     res.send(result)
+    //   })
+    // })
+
+
+
+
+
+
+
+    app.put('/bills', (req, res) => {
       console.log(req)
-      db.collection('messages')
+      db.collection('bills')
       .findOneAndUpdate({name: req.body.name, price: req.body.price}, {
         $set: {
           thumbUp:req.body.thumbUp
@@ -58,12 +91,13 @@ module.exports = function(app, passport, db, ObjectId) {
       })
     })
 
+
     // app.put('/addTotal',(req, res)=> {
     //   db.collection('messages').findOneAndUpdate({createdBy: req.user._id})
     // })
 
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, price: req.body.price}, (err, result) => {
+    app.delete('/bills', (req, res) => {
+      db.collection('bills').findOneAndDelete({name: req.body.name, price: req.body.price}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
