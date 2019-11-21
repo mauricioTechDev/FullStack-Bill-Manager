@@ -6,6 +6,7 @@ No one like to pay bills.  Even less having to manage them all.  Therefore I bui
 ![alt text](homeScreenShot.png)
 ![alt text](loginScreenShot.png)
 ![alt text](profileScreenShot.png)
+![alt_text](homePageSreenShot.png)
 
 
 
