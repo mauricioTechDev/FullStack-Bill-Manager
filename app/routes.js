@@ -1,4 +1,3 @@
-
 const fetch = require("node-fetch");
 
 module.exports = function(app, passport, db, ObjectId) {
@@ -42,37 +41,21 @@ module.exports = function(app, passport, db, ObjectId) {
       })
     })
 
-    // app.put('/total', (req, res) => {
-    //   console.log(req)
-    //   let listOfBills = document.getElementsByClassName('messages')
-    //   console.log(listOfBills)
-    //   let listOfAllTheBills = []
-    //   for(let i = 0; i<listOfBills[0].children.length; i++){
-    //     let valueOfBills = parseInt(listOfBills[0].children[i].childNodes[3].innerText)
-    //     listOfAllTheBills.push(valueOfBills)
-    //     console.log(listOfAllTheBills)
-    //     const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    //     // console.log(listOfAllTheBills.reduce(reducer));
-    //     let totalPricOfBills = listOfAllTheBills.reduce(reducer)
-    //   }
-    //   db.collection('bills')
-    //   .findOneAndUpdate({name: req.body.name, price: req.body.price, thumbUp:req.body.thumbUp}, {
-    //     $set: {
-    //       totalBills: totalP
-    //     }
-    //   }, {
-    //     sort: {_id: -1},
-    //     upsert: true
-    //   }, (err, result) => {
-    //     if (err) return res.send(err)
-    //     res.send(result)
-    //   })
-    // })
-
-
-
-
-
+    app.get('/totalOfAllBills', (req, res) => {
+      let total = 0
+      var uId = req.user._id
+      db.collection('bills').find({createdBy: uId}).toArray((err, result) => {
+          result.forEach(el => {
+            // in the array
+            total += parseFloat(el.price);
+            console.log(el.price)
+          });
+          res.write(JSON.stringify({
+            totalBills: parseFloat(total)
+          }));
+          res.end()
+      })
+    });
 
 
     app.put('/bills', (req, res) => {

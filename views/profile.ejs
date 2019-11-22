@@ -49,8 +49,8 @@
             <% if (user.local.email) { %>
             <form action="/bills" method="POST">
               <input type="text" placeholder="bill name" name="name">
-              <input type="number" placeholder="amount" name="price" step=".01" value="">
-              <button type="submit">Submit</button>
+              <input id="priceOfBill" type="number" placeholder="amount" name="price" step=".01" value="">
+              <button id="calculateTotal" type="submit">Submit</button>
             </form>
             <% } %>
           </div>
@@ -70,11 +70,10 @@
           <% } %>
           </ul>
 
-        <span>$<span class="billTotal"></span></span>
+        <span>$<span class="billTotal"><%= bills.totalBills %></span></span>
           <% if (user.local.email) { %>
             <section class="getYourTotal">Click for total</section>
           <% } %>
-
 
         </div>
 </div>

@@ -50,6 +50,21 @@ Array.from(trash).forEach(function(element) {
       });
 });
 
+
+var totalButton = document.querySelector(".getYourTotal")
+var total = document.querySelector(".billTotal")
+
+totalButton.addEventListener('click', function(){
+  fetch("/totalOfAllBills")
+  .then(res => res.json())
+  .then(response => {
+    console.log(response)
+    total.innerHTML = response.totalBills
+  })
+  .catch(err => console.log(err))
+  // total.innerHTML = total
+  })
+
 document.querySelector('.getYourTotal').onclick = function(){
   let listOfBills = document.getElementsByClassName('messages')
   console.log(listOfBills)
