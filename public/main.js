@@ -65,22 +65,19 @@ totalButton.addEventListener('click', function(){
   // total.innerHTML = total
   })
 
-document.querySelector('.getYourTotal').onclick = function(){
-  let listOfBills = document.getElementsByClassName('messages')
-  console.log(listOfBills)
-  let listOfAllTheBills = []
-  for(let i = 0; i<listOfBills[0].children.length; i++){
-    let valueOfBills = parseInt(listOfBills[0].children[i].childNodes[3].innerText)
-    // console.log(valueOfBills)
-    listOfAllTheBills.push(valueOfBills)
-    console.log(listOfAllTheBills)
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    // console.log(listOfAllTheBills.reduce(reducer));
-    let totalPricOfBills = listOfAllTheBills.reduce(reducer)
-    console.log(totalPricOfBills)
-    document.querySelector(".billTotal").textContent = totalPricOfBills
-
-
-  }
-
-}
+// document.querySelector('.getYourTotal').onclick = function(){
+//   let listOfBills = document.getElementsByClassName('messages')
+//   console.log(listOfBills)
+//   let listOfAllTheBills = []
+//   for(let i = 0; i<listOfBills[0].children.length; i++){
+//     let valueOfBills = parseInt(listOfBills[0].children[i].childNodes[3].innerText)
+//     // console.log(valueOfBills)
+//     listOfAllTheBills.push(valueOfBills)
+//     console.log(listOfAllTheBills)
+//     const reducer = (accumulator, currentValue) => accumulator + currentValue;
+//     // console.log(listOfAllTheBills.reduce(reducer));
+//     let totalPricOfBills = listOfAllTheBills.reduce(reducer)
+//     console.log(totalPricOfBills)
+//     document.querySelector(".billTotal").textContent = totalPricOfBills
+//   }
+// }

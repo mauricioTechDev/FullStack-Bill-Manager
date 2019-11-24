@@ -57,6 +57,9 @@ module.exports = function(app, passport, db, ObjectId) {
       })
     });
 
+    // app.put('/addTotal',(req, res)=> {
+    //   db.collection('messages').findOneAndUpdate({createdBy: req.user._id})
+    // })
 
     app.put('/bills', (req, res) => {
       console.log(req)
@@ -75,9 +78,7 @@ module.exports = function(app, passport, db, ObjectId) {
     })
 
 
-    // app.put('/addTotal',(req, res)=> {
-    //   db.collection('messages').findOneAndUpdate({createdBy: req.user._id})
-    // })
+
 
     app.delete('/bills', (req, res) => {
       db.collection('bills').findOneAndDelete({name: req.body.name, price: req.body.price}, (err, result) => {

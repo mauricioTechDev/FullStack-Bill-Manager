@@ -1,7 +1,9 @@
 # FullStack-Bill-Manager
 
 # ✅ Personal FullStack Bill Handler App
-No one like to pay bills.  Even less having to manage them all.  Therefore I built this Full Stack application in order for you to take away some of the stress that come with having to pay bills..
+No one like to pay bills.  Even less having to manage them all.  Therefore I built this Full Stack application in order to remove some of the stress that come with having to pay bills.
+
+Everyone is able to sign up with their own individual account.  They will then have their own  bills saved to their accounts  All the math that is done in order to calculate you bill total is done server side using Node.js.  Users can then mark of bill as payed as well as delete them from the list. 
 
 ![alt text](homeScreenShot.png)
 ![alt text](loginScreenShot.png)
